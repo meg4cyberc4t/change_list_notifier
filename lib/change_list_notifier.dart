@@ -2,9 +2,10 @@ library change_list_notifier;
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-class ChangeListNotifier<E> extends ChangeNotifier implements List {
+class ChangeListNotifier<E> extends ChangeNotifier
+    implements List, ValueListenable<List> {
   List _data;
 
   ChangeListNotifier(this._data);
@@ -286,4 +287,7 @@ class ChangeListNotifier<E> extends ChangeNotifier implements List {
     _data.length = newLength;
     notifyListeners();
   }
+
+  @override
+  List get value => _data;
 }
